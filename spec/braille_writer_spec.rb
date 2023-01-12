@@ -19,6 +19,10 @@ describe 'braillewriter' do
     expect(@braille_writer.convert_character('a')).to eq({ top: ["0","."], mid: ["0","0"], low: ["0","0"] })
   end
 
+  it "can convert an input file into a array of single character strings" do
+    expect(@braille_writer.convert_to_strings_array(@input_file)).to eq('string')
+  end
+
 
 
 end
