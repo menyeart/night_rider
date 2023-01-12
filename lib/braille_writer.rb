@@ -1,4 +1,6 @@
-class BrailleWriter
+require './lib/dictionary'
+
+class BrailleWriter < Dictionary
   attr_reader :input_file, :output_file
 
   def initialize(input_file, output_file)
@@ -10,6 +12,13 @@ class BrailleWriter
     @character_count = File.readlines(@input_file).join.length
     puts "Created 'braille.txt' containing #{@character_count} characters"
   end
+
+  def convert_character(character)
+    self.english_to_braille[character]
+  end
+
+
+
 
 
 
