@@ -5,7 +5,7 @@ require './lib/dictionary'
 describe 'braillewriter' do
   before(:all) do
 
-    input_file = '.message.txt'
+    input_file = File.open('./message.txt')
     output_file = '.braille.txt'
     @braille_writer = BrailleWriter.new(input_file, output_file)
     @dictionary = Dictionary.new
