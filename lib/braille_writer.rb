@@ -12,9 +12,9 @@ class BrailleWriter < Dictionary
 
   def run
     string_array = convert_to_strings_array(@input_file)
-    convert_full_message_top(string_array)
-    convert_full_message_mid(string_array)
-    convert_full_message_low(string_array)
+    concat_full_message_top(string_array, @output_string)
+    concat_full_message_mid(string_array, @output_string)
+    concat_full_message_low(string_array, @output_string)
     puts split_line(@output_string)
     puts "Created 'braille.txt' containing #{@character_count} characters"
   end
