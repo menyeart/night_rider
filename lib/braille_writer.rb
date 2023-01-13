@@ -10,8 +10,8 @@ class BrailleWriter < Dictionary
 
   def run
     @character_count = File.readlines(@input_file).join.length
-    puts "Created 'braille.txt' containing #{@character_count} characters"
     convert_to_strings_array(@input_file)
+    puts "Created 'braille.txt' containing #{@character_count} characters"
   end
 
   def convert_character(character)
@@ -19,7 +19,7 @@ class BrailleWriter < Dictionary
   end
 
   def convert_to_strings_array(file)
-   puts File.readlines(file)
+    File.readlines(file).to_s.gsub(/[^0-9a-z ]/i, '').split("").join.split("")
   end
 
 
