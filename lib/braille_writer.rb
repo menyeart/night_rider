@@ -16,15 +16,15 @@ class BrailleWriter < Dictionary
     puts "Created 'braille.txt' containing #{@character_count} characters"
   end
 
-  def convert_character(character)
+  def convert_character_top(character)
     self.english_to_braille[character][:top]
   end
 
-  def convert_character(character)
+  def convert_character_mid(character)
     self.english_to_braille[character][:mid]
   end
 
-  def convert_character(character)
+  def convert_character_low(character)
     self.english_to_braille[character][:low]
   end
 
@@ -34,7 +34,9 @@ class BrailleWriter < Dictionary
 
   def convert_full_message(message)
     message.each do |character|
-      puts convert_character(character)
+      puts convert_character_top(character)
+      putsconvert_character_top(character)
+      puts convert_character_top(character)
     end
   end
 
