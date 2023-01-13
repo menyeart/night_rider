@@ -1,20 +1,21 @@
 require './lib/dictionary'
 
 class BrailleWriter < Dictionary
-  attr_reader :input_file, :output_file
+  attr_reader :input_file, :output_file, :output_string
 
   def initialize(input_file, output_file)
     @input_file = input_file
     @output_file = output_file
-    @blank_string = ''
+    @output_string = ''
+    @character_count = File.readlines(@input_file).join.length
   end
 
   def run
-    @character_count = File.readlines(@input_file).join.length
     string_array = convert_to_strings_array(@input_file)
     convert_full_message_top(string_array)
     convert_full_message_mid(string_array)
     convert_full_message_low(string_array)
+    puts split_line(@output_string)
     puts "Created 'braille.txt' containing #{@character_count} characters"
   end
 
@@ -34,28 +35,36 @@ class BrailleWriter < Dictionary
     File.readlines(file).to_s.gsub(/[^0-9a-z ]/i, '').split("").join.split("")
   end
 
-  def convert_full_message_top(message)
+  def concat_full_message_top(message, output_string)
     message.each do |character|
-      @blank_string.concat(convert_character_top(character)[0])
-      @blank_string.concat convert_character_top(character)[1]
+      output_string.concat(convert_character_top(character)[0])
+      output_string.concat convert_character_top(character)[1]
     end
+    output_string
   end
 
-  def convert_full_message_mid(message)
+  def concat_full_message_mid(message, output_string)
     message.each do |character|
-      @blank_string.concat convert_character_mid(character)[0]
-      @blank_string.concat convert_character_mid(character)[1]
+      output_string.concat convert_character_mid(character)[0]
+      output_string.concat convert_character_mid(character)[1]
     end
+    output_string
   end
 
-  def convert_full_message_low(message)
+  def concat_full_message_low(message, ouput_string)
     message.each do |character|
-      @blank_string.concat convert_character_low(character)[0]
-      @blank_string.concat convert_character_low(character)[1]
+      output_string.concat convert_character_low(character)[0]
+      output_string.concat convert_character_low(character)[1]
     end
-    p @blank_string
+    output_string
   end
 
+  def split_line(string)
+    position_1 = string.length / 3
+    position_2 =  (string.length - position_1) + 1
+    string.insert(position_1, "\n")
+    string.insert(position_2, "\n")
+  end
   
 
 
