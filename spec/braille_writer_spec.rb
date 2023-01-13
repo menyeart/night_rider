@@ -5,9 +5,9 @@ require './lib/dictionary'
 describe 'braillewriter' do
   before(:all) do
 
-    input_file = File.open('./message.txt')
-    output_file = '.braille.txt'
-    @braille_writer = BrailleWriter.new(input_file, output_file)
+   @input_file = File.open('./message.txt')
+    @output_file = '.braille.txt'
+    @braille_writer = BrailleWriter.new(@input_file, @output_file)
     @dictionary = Dictionary.new
   end
 
@@ -20,7 +20,7 @@ describe 'braillewriter' do
   end
 
   it "can convert an input file into a array of single character strings" do
-    expect(@braille_writer.convert_to_strings_array(@input_file)).to eq('string')
+    expect(@braille_writer.convert_to_strings_array(@input_file)).to eq(["s","t","r","i","n","g"])
   end
 
 
