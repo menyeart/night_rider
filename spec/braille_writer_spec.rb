@@ -22,11 +22,11 @@ describe 'braillewriter' do
   end
 
   it "can convert a single character to it's dictionary class equivalent of the middle part" do
-    expect(@braille_writer.convert_character_mid('a')).to eq(["0","0"])
+    expect(@braille_writer.convert_character_mid('a')).to eq([".", "."])
   end
 
   it "can convert a single character to it's dictionary class equivalent of the low part" do
-    expect(@braille_writer.convert_character_low('a')).to eq(["0","0"])
+    expect(@braille_writer.convert_character_low('a')).to eq([".","."])
   end
 
   it "can convert an input file into a array of single character strings" do
@@ -36,19 +36,19 @@ describe 'braillewriter' do
   it "can concatenate every set of a message's converted top two braille characters into a string" do
     message = ["a","b","c"]
     output_string = ''
-    expect(@braille_writer.concat_full_message_top(message, output_string)).to eq("0.0...")
+    expect(@braille_writer.concat_full_message_top(message, output_string)).to eq("0.0.00")
   end
 
   it "can concatenate every set of a message's converted middle two braille characters into a string" do
     message = ["a","b","c"]
     output_string = ''
-    expect(@braille_writer.concat_full_message_mid(message, output_string)).to eq("000.00")
+    expect(@braille_writer.concat_full_message_mid(message, output_string)).to eq("..0...")
   end
 
   it "can concatenate every set of a message's converted top low braille characters into a string" do
     message = ["a","b","c"]
     output_string = ''
-    expect(@braille_writer.concat_full_message_low(message, output_string)).to eq("00..00")
+    expect(@braille_writer.concat_full_message_low(message, output_string)).to eq("......")
   end
 
 
