@@ -45,11 +45,17 @@ describe 'braillewriter' do
     expect(@braille_writer.concat_full_message_mid(message, output_string)).to eq("..0...")
   end
 
-  it "can concatenate every set of a message's converted top low braille characters into a string" do
+  it "can concatenate every set of a message's converted low two braille characters into a string" do
     message = ["a","b","c"]
     output_string = ''
     expect(@braille_writer.concat_full_message_low(message, output_string)).to eq("......")
   end
+
+  it "can insert newlines in the output string between the low, mid and top parts" do
+    string = "abc"
+    expect(@braille_writer.split_line(string)).to eq("a\nb\nc")
+  end
+
 
 
 
