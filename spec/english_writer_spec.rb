@@ -53,6 +53,5 @@ describe 'englishwriter' do
     @english_writer.run
     expect(@english_writer.count_chars(@output_file)).to eq(3)
   end
-    
 end
 
