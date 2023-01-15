@@ -33,6 +33,13 @@ class EnglishWriter < Dictionary
     self.braille_to_english[string]
   end
 
+  def add_to_output(string, output_string)
+    output_string.concat(string)
+  end
+    
+
+  
+
 
 
 end
