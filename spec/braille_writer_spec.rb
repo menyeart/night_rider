@@ -6,7 +6,7 @@ describe 'braillewriter' do
   before(:all) do
 
     @input_file = File.open('./message_test.txt')
-    @output_file = '.braille.txt'
+    @output_file = './braille_test.txt'
     @braille_writer = BrailleWriter.new(@input_file, @output_file)
     @dictionary = Dictionary.new
     @output_string = ''
@@ -56,9 +56,9 @@ describe 'braillewriter' do
     expect(@braille_writer.split_line(string)).to eq("a\nb\nc")
   end
 
-
-
-
-
-
+  it "can write the contents of the output string to a specific file" do
+    string = 'abc'
+    @braille_writer.write_braille(@output_file, string)
+    expect(File.readlines(@output_file)[0]).to eq("abc")
+  end
 end
