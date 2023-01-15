@@ -21,5 +21,10 @@ describe 'englishwriter' do
     expect(@english_writer.create_line_array(@input_file)).to eq(["0.0.00", "..0...", "......"])
   end
 
+  it "can extract the first braille character" do
+    string_array = ["0.0.00", "..0...", "......"]
+    expect(@english_writer.build_braille_character_string(string_array)).to eq("0.....")
+  end
+
 end
 
