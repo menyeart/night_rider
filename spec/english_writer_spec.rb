@@ -17,5 +17,9 @@ describe 'englishwriter' do
     expect(@english_writer).to be_an_instance_of(EnglishWriter)
   end
 
+  it "read an input file and create an arraay containing the lines" do
+    expect(@english_writer.create_line_array(@input_file)).to eq(["0.0.00", "..0...", "......"])
+  end
+
 end
 
