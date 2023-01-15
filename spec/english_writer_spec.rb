@@ -17,7 +17,7 @@ describe 'englishwriter' do
     expect(@english_writer).to be_an_instance_of(EnglishWriter)
   end
 
-  it "read an input file and create an arraay containing the lines" do
+  it "can read an input file and create an arraay containing the lines" do
     expect(@english_writer.create_line_array(@input_file)).to eq(["0.0.00", "..0...", "......"])
   end
 
@@ -41,6 +41,11 @@ describe 'englishwriter' do
     output_string = 'a'
     @english_writer.write_english(@output_file, output_string)
     expect(File.read(@output_file)).to eq('a')
+  end
+
+  it "can count the number of characters in a file" do
+    file = './message.txt'
+    expect(@english_writer.count_chars(file)).to eq(6)
   end
 
   
