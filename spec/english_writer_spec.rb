@@ -48,7 +48,11 @@ describe 'englishwriter' do
     expect(@english_writer.count_chars(file)).to eq(6)
   end
 
-  
-
+  it "can take braille text from a file, convert it to english text and output it to another file" do
+    expect(@english_writer.count_chars(@output_file)).to eq(1)
+    @english_writer.run
+    expect(@english_writer.count_chars(@output_file)).to eq(3)
+  end
+    
 end
 
