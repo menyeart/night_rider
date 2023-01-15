@@ -37,6 +37,12 @@ describe 'englishwriter' do
     expect(@output_string).to eq("a") 
   end
 
+  it "can write the converted string to a file" do
+    output_string = 'a'
+    @english_writer.write_english(@output_file, output_string)
+    expect(File.read(@output_file)).to eq('a')
+  end
+
   
 
 end
