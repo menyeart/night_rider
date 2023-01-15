@@ -28,7 +28,7 @@ describe 'englishwriter' do
 
   it "can convert a braille character string to its english character equivalent" do
     braille_char_string = "0....."
-    expect(@english_writer.convert_to_eng_char(braille_char_string )).to eq("a")
+    expect(@english_writer.convert_to_eng_char(braille_char_string)).to eq("a")
   end
 
 end
