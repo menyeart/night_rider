@@ -33,9 +33,11 @@ describe 'englishwriter' do
 
   it "can add a converted character to the output string" do
     char = 'a'
-    @english_writer.add_to_output(char)
+    @english_writer.add_to_output(char, @output_string)
     expect(@output_string).to eq("a") 
   end
+
+  
 
 end
 
