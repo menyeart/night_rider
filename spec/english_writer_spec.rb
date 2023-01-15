@@ -31,5 +31,11 @@ describe 'englishwriter' do
     expect(@english_writer.convert_to_eng_char(braille_char_string)).to eq("a")
   end
 
+  it "can add a converted character to the output string" do
+    char = 'a'
+    @english_writer.add_to_output(char)
+    expect(@output_string).to eq("a") 
+  end
+
 end
 
