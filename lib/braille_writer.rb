@@ -6,7 +6,7 @@ class BrailleWriter < Dictionary
   def initialize(input_file, output_file)
     @input_file = input_file
     @output_file = output_file
-    @output_string = ''
+    @output_string = ""
     @character_count = File.readlines(@input_file).join.length
   end
 
@@ -15,7 +15,8 @@ class BrailleWriter < Dictionary
     concat_full_message_top(string_array, @output_string)
     concat_full_message_mid(string_array, @output_string)
     concat_full_message_low(string_array, @output_string)
-    puts split_line(@output_string)
+    split_line(@output_string)
+    write_braille(@output_file, @output_string)
     puts "Created 'braille.txt' containing #{@character_count} characters"
   end
 
@@ -51,7 +52,7 @@ class BrailleWriter < Dictionary
     output_string
   end
 
-  def concat_full_message_low(message, ouput_string)
+  def concat_full_message_low(message, output_string)
     message.each do |character|
       output_string.concat convert_character_low(character)[0]
       output_string.concat convert_character_low(character)[1]
@@ -65,7 +66,10 @@ class BrailleWriter < Dictionary
     string.insert(position_1, "\n")
     string.insert(position_2, "\n")
   end
-  
 
-
+  def write_braille(file, output_string)
+    file = File.open(file, "w")
+    file.write(output_string)
+    file.close
+  end
 end
