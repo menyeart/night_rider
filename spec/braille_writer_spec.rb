@@ -9,7 +9,7 @@ describe 'braillewriter' do
     @output_file = './braille_test.txt'
     @braille_writer = BrailleWriter.new(@input_file, @output_file)
     @dictionary = Dictionary.new
-    @output_string = ''
+    @output_string = ""
 
   end
 
@@ -30,25 +30,25 @@ describe 'braillewriter' do
   end
 
   it "can convert an input file into a array of single character strings" do
-    expect(@braille_writer.convert_to_strings_array(@input_file)).to eq(["s","t","r","i","n","g"])
+    expect(@braille_writer.convert_to_strings_array(@input_file)).to eq(["a", "b", "c"])
   end
 
   it "can concatenate every set of a message's converted top two braille characters into a string" do
     message = ["a","b","c"]
-    output_string = ''
-    expect(@braille_writer.concat_full_message_top(message, output_string)).to eq("0.0.00")
+    @output_string = ''
+    expect(@braille_writer.concat_full_message_top(message, @output_string)).to eq("0.0.00")
   end
 
   it "can concatenate every set of a message's converted middle two braille characters into a string" do
     message = ["a","b","c"]
-    output_string = ''
-    expect(@braille_writer.concat_full_message_mid(message, output_string)).to eq("..0...")
+    @output_string = ''
+    expect(@braille_writer.concat_full_message_mid(message, @output_string)).to eq("..0...")
   end
 
   it "can concatenate every set of a message's converted low two braille characters into a string" do
     message = ["a","b","c"]
-    output_string = ''
-    expect(@braille_writer.concat_full_message_low(message, output_string)).to eq("......")
+    @output_string = ''
+    expect(@braille_writer.concat_full_message_low(message, @output_string)).to eq("......")
   end
 
   it "can insert newlines in the output string between the low, mid and top parts" do
@@ -57,8 +57,13 @@ describe 'braillewriter' do
   end
 
   it "can write the contents of the output string to a specific file" do
-    string = 'abc'
+    string = "abc"
     @braille_writer.write_braille(@output_file, string)
     expect(File.readlines(@output_file)[0]).to eq("abc")
+  end
+
+  it "can read a string from a file, create an output file, convert the string to braille and output it to the output file" do
+    @braille_writer.run
+    expect(File.read(@output_file)).to eq("0.0.00\n..0...\n......")
   end
 end
