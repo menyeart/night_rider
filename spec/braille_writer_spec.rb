@@ -44,6 +44,11 @@ describe 'braillewriter' do
     expect(File.readlines(@output_file)[0]).to eq("abc")
   end
 
+  it "can return a string with the original english message character count interpolated" do
+    chars = 5
+    expect(@braille_writer.return_char_count(chars)).to eq("Created 'braille.txt' containing #{chars} characters")
+  end
+
   it "can read a string from a file, create an output file, convert the string to braille and output it to the output file" do
     @braille_writer.run
     expect(File.read(@output_file)).to eq("0.0.00\n..0...\n......")
