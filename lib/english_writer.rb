@@ -18,7 +18,7 @@ class EnglishWriter < Dictionary
       add_to_output(eng_string, @output_string)
     end
     write_english(@output_file, @output_string)
-    puts print_char_count(count_chars(@output_file))
+    puts return_char_count(count_chars(@output_file))
   end
 
   def create_line_array(file)
@@ -54,7 +54,7 @@ class EnglishWriter < Dictionary
     @character_count = File.readlines(file).join.length
   end
 
-  def print_char_count(chars)
+  def return_char_count(chars)
     "Created original_message.txt containing #{chars} characters"
   end
 end
