@@ -17,7 +17,7 @@ class BrailleWriter < Dictionary
     concat_full_message(:low, string_array, @output_string)
     split_line(@output_string)
     write_braille(@output_file, @output_string)
-    puts "Created 'braille.txt' containing #{@character_count} characters"
+    puts return_char_count(@character_count)
   end
 
   def convert_character(position,character)
@@ -47,5 +47,9 @@ class BrailleWriter < Dictionary
     file = File.open(file, "w")
     file.write(output_string)
     file.close
+  end
+
+  def return_char_count(chars)
+    "Created 'braille.txt' containing #{chars} characters"
   end
 end
