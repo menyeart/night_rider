@@ -48,6 +48,11 @@ describe 'englishwriter' do
     expect(@english_writer.count_chars(file)).to eq(6)
   end
 
+  it "can return a message with the character count interpolated" do
+    chars = 5
+    expect(@english_writer.return_char_count(chars)).to eq("Created original_message.txt containing 5 characters")
+  end
+
   it "can take braille text from a file, convert it to english text and output it to another file" do
     expect(@english_writer.count_chars(@output_file)).to eq(1)
     @english_writer.run
