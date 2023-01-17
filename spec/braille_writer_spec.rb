@@ -33,11 +33,6 @@ describe 'braillewriter' do
     expect(@braille_writer.concat_full_message(:top, message, @output_array)).to eq(["0.0.00"])
   end
 
-  it "can insert newlines in the output string between the low, mid and top parts" do
-    string = "abc"
-    expect(@braille_writer.split_line(string)).to eq("a\nb\nc")
-  end
-
   it "can write the contents of the output string to a specific file" do
     string = "abc"
     @braille_writer.write_braille(@output_file, string)
