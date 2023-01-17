@@ -25,7 +25,7 @@ class BrailleWriter < Dictionary
   end
 
   def convert_to_strings_array(file)
-    File.readlines(file).to_s.gsub(/[^0-9a-z ]/i, '').split("").join.split("")
+    File.readlines(file).to_s.gsub(/[^a-z ]/i, '').split("")
   end
 
   def concat_full_message(position, message, output_string)
