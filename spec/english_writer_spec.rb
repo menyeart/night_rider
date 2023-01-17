@@ -58,5 +58,10 @@ describe 'englishwriter' do
     @english_writer.run
     expect(@english_writer.count_chars(@output_file)).to eq(3)
   end
+
+  it "can consolidate wrapped braille lines into a single array of top, middle and low characters" do
+    unconsolidated_array = ['a','b','c','a','b','c','a','b','c']
+    expect(@english_writer.consolidate_strings(unconsolidated_array)).to eq(["aaa", "bbb", "ccc"])
+  end
 end
 

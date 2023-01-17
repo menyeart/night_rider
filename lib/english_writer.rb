@@ -12,8 +12,9 @@ class EnglishWriter < Dictionary
 
   def run
     line_array = create_line_array(@input_file)
-    until line_array == ["","",""]
-      braille_string = build_braille_character_string(line_array)
+    new_line_array = consolidate_strings(line_array)
+    until new_line_array == ["","",""]
+      braille_string = build_braille_character_string(new_line_array)
       eng_string = convert_to_eng_char(braille_string)
       add_to_output(eng_string, @output_string)
     end
@@ -57,4 +58,25 @@ class EnglishWriter < Dictionary
   def return_char_count(chars)
     "Created original_message.txt containing #{chars} characters"
   end
+
+  def consolidate_strings(array_of_strings)
+    new_line_array = ['', '', '']
+    counter = 1
+    array_of_strings.each do |string|
+      if counter == 1
+        new_line_array[0].concat(string)
+      elsif counter == 2
+        new_line_array[1].concat(string)
+      else
+        new_line_array[2].concat(string)
+      end
+      if counter == 3
+        counter = 0
+      end
+      counter += 1
+    end
+    new_line_array
+  end
+
+
 end
