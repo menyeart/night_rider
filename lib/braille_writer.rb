@@ -30,20 +30,13 @@ class BrailleWriter < Dictionary
    File.readlines(file).to_s.gsub(/[^a-z ]/i, '').chars.each_slice(40).to_a
   end
 
-  def concat_full_message(position, message, output_string)
+  def concat_full_message(position, message, output_array)
     string_array = ""
     message.each do |character|
       string_array.concat(convert_character(position, character)[0])
       string_array.concat(convert_character(position, character)[1])
     end
-    output_string << string_array
-  end
-
-  def split_line(string)
-      position_1 = string.length / 3
-      position_2 =  (string.length - position_1) + 1
-      string.insert(position_1, "\n")
-      string.insert(position_2, "\n")
+    output_array << string_array
   end
 
   def write_braille(file, output_string)
