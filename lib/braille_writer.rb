@@ -6,34 +6,37 @@ class BrailleWriter < Dictionary
   def initialize(input_file, output_file)
     @input_file = input_file
     @output_file = output_file
-    @output_string = ""
+    @output_array = []
     @character_count = File.readlines(@input_file).join.length
   end
 
   def run
-    string_array = convert_to_strings_array(@input_file)
-    concat_full_message(:top, string_array, @output_string)
-    concat_full_message(:mid, string_array, @output_string)
-    concat_full_message(:low, string_array, @output_string)
-    split_line(@output_string)
-    write_braille(@output_file, @output_string)
-    puts return_char_count(@character_count)
+    arrays_array = convert_to_arrays_array(@input_file)
+      arrays_array.map do |string_array|
+      concat_full_message(:top, string_array, @output_array)
+      concat_full_message(:mid, string_array, @output_array)
+      concat_full_message(:low, string_array, @output_array)
+    end
+      output = @output_array.join("\n")
+      write_braille(@output_file, output)
+      puts return_char_count(@character_count)
   end
 
   def convert_character(position,character)
     self.english_to_braille[character][position]
   end
 
-  def convert_to_strings_array(file)
-    File.readlines(file).to_s.gsub(/[^a-z ]/i, '').split("")
+  def convert_to_arrays_array(file)
+   File.readlines(file).to_s.gsub(/[^a-z ]/i, '').chars.each_slice(40).to_a
   end
 
   def concat_full_message(position, message, output_string)
+    string_array = ""
     message.each do |character|
-      output_string.concat(convert_character(position, character)[0])
-      output_string.concat(convert_character(position, character)[1])
+      string_array.concat(convert_character(position, character)[0])
+      string_array.concat(convert_character(position, character)[1])
     end
-    output_string
+    output_string << string_array
   end
 
   def split_line(string)
