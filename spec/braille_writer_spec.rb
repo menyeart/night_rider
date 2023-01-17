@@ -9,7 +9,7 @@ describe 'braillewriter' do
     @output_file = './braille_test.txt'
     @braille_writer = BrailleWriter.new(@input_file, @output_file)
     @dictionary = Dictionary.new
-    @output_string = ""
+    @output_array = []
 
   end
 
@@ -23,14 +23,14 @@ describe 'braillewriter' do
     expect(@braille_writer.convert_character(:low, 'a')).to eq([".", "."])
   end
 
-  it "can convert an input file into a array of single character strings" do
-    expect(@braille_writer.convert_to_strings_array(@input_file)).to eq(["a", "b", "c"])
+  it "can convert an input file into an array of character arrays" do
+    expect(@braille_writer.convert_to_arrays_array(@input_file)).to eq([["a", "b", "c"]])
   end
 
   it "can concatenate every set of a message's converted two braille characters into a string" do
     message = ["a","b","c"]
     @output_string = ''
-    expect(@braille_writer.concat_full_message(:top, message, @output_string)).to eq("0.0.00")
+    expect(@braille_writer.concat_full_message(:top, message, @output_array)).to eq(["0.0.00"])
   end
 
   it "can insert newlines in the output string between the low, mid and top parts" do
