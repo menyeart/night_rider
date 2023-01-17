@@ -1,7 +1,7 @@
 require './lib/dictionary'
 
 class BrailleWriter < Dictionary
-  attr_reader :input_file, :output_file, :output_string
+  attr_reader :input_file, :output_file, :output_array
 
   def initialize(input_file, output_file)
     @input_file = input_file
